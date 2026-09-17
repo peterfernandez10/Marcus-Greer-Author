@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090807">
+<meta name="description" content="Marcus Greer — author, storyteller, and architect of stories rooted in Atlanta, loyalty, memory, family, and the streets that remember.">
+<title>Marcus Greer — Every Street Has a Story.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#090807; --ink2:#11100e; --espresso:#241714; --wine:#5c171d;
+  --wine2:#7a2328; --champ:#d6b67b; --amber:#f0a42c; --ivory:#eee5d3;
+  --paper:#e8dcc7; --muted:#a99e8c; --line:rgba(238,229,211,.15);
+  --white:#f7f2e9; --serif:"Playfair Display",Georgia,serif;
+  --sans:"DM Sans",Arial,sans-serif; --display:"Space Grotesk",Arial,sans-serif;
+  --shadow:0 28px 80px rgba(0,0,0,.42);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--ivory);font-family:var(--sans);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+img{display:block;width:100%;object-fit:cover}
+::selection{background:var(--champ);color:var(--ink)}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E")}
+.preloader{position:fixed;inset:0;background:#090807;z-index:2000;display:grid;place-items:center;transition:.8s ease}
+.preloader.hide{opacity:0;visibility:hidden}
+.loader-mark{text-align:center}
+.loader-mark .mono{font:700 12px var(--display);letter-spacing:.34em;text-transform:uppercase;color:var(--champ)}
+.loader-line{width:180px;height:1px;background:#292522;margin:20px auto;overflow:hidden}
+.loader-line:after{content:"";display:block;width:50%;height:100%;background:var(--amber);animation:load 1.4s ease-in-out infinite}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(220%)}}
+
+.nav{position:fixed;top:0;left:0;right:0;height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 4.5vw;z-index:900;border-bottom:1px solid transparent;transition:.35s}
+.nav.scrolled{background:rgba(9,8,7,.88);backdrop-filter:blur(18px);border-color:var(--line)}
+.brand{display:flex;align-items:center;gap:14px;font:700 15px var(--display);letter-spacing:.18em;text-transform:uppercase}
+.brand-mark{width:30px;height:30px;border:1px solid var(--champ);display:grid;place-items:center;color:var(--champ);font:600 12px var(--serif);transform:rotate(45deg)}
+.brand-mark span{transform:rotate(-45deg)}
+.navlinks{display:flex;gap:28px;font:600 11px var(--display);letter-spacing:.14em;text-transform:uppercase;color:#c9bfaf}
+.navlinks a{position:relative}
+.navlinks a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:var(--champ);transition:.3s}
+.navlinks a:hover:after{right:0}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.icon-btn{width:42px;height:42px;border:1px solid var(--line);background:transparent;color:var(--ivory);display:grid;place-items:center;transition:.25s}
+.icon-btn:hover{border-color:var(--champ);color:var(--champ)}
+.cart-count{position:absolute;top:-4px;right:-4px;background:var(--amber);color:#17100a;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:9px;font-weight:800}
+.cart-wrap{position:relative}
+.menu-btn{display:none}
+
+.hero{min-height:100svh;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:-5%;background-image:url("https://images.unsplash.com/photo-1704223058907-4d78e2ac0a83?auto=format&fit=crop&fm=jpg&q=88&w=3000");background-position:center 55%;background-size:cover;transform:scale(1.04);filter:saturate(.8) contrast(1.08)}
+.hero:before{content:"";position:absolute;inset:0;background:rgba(4,4,3,.52)}
+.hero:after{content:"";position:absolute;inset:0;background:rgba(90,19,26,.12)}
+.hero-grid{position:absolute;inset:0;opacity:.17;background-image:linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),#fff calc(25% - 1px),#fff 25%,transparent 25%,transparent calc(50% - 1px),#fff calc(50% - 1px),#fff 50%,transparent 50%,transparent calc(75% - 1px),#fff calc(75% - 1px),#fff 75%,transparent 75%);background-size:100% 100%}
+.hero-content{position:relative;z-index:2;padding:0 7vw 8vh;max-width:1180px}
+.kicker{font:600 11px var(--display);letter-spacing:.28em;text-transform:uppercase;color:var(--champ);display:flex;align-items:center;gap:14px}
+.kicker:before{content:"";width:42px;height:1px;background:var(--amber)}
+.hero h1{font:600 clamp(3.8rem,9.4vw,10.5rem)/.82 var(--serif);letter-spacing:-.055em;max-width:1000px;margin:24px 0 26px}
+.hero h1 em{font-weight:500;color:var(--paper)}
+.hero-intro{max-width:620px;color:#d3c9b8;font-size:16px;line-height:1.65;margin-bottom:32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.btn{min-height:48px;padding:0 20px;border:1px solid var(--champ);display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--champ);color:#14100c;font:700 11px var(--display);letter-spacing:.16em;text-transform:uppercase;transition:.3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(214,182,123,.16)}
+.btn.secondary{background:rgba(9,8,7,.35);color:var(--ivory);border-color:rgba(238,229,211,.35)}
+.btn.secondary:hover{border-color:var(--champ);color:var(--champ)}
+.hero-meta{position:absolute;right:4.5vw;bottom:7vh;z-index:2;writing-mode:vertical-rl;transform:rotate(180deg);font:600 9px var(--display);letter-spacing:.22em;color:#b9af9e;text-transform:uppercase}
+.scroll-cue{position:absolute;left:7vw;bottom:3vh;z-index:3;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#b9af9e;display:flex;gap:10px;align-items:center}
+.scroll-cue:before{content:"";height:1px;width:46px;background:var(--champ)}
+
+.section{padding:130px 7vw;position:relative}
+.section.dark2{background:#0e0d0b}
+.section.wine{background:#3b1015}
+.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:55px}
+.eyebrow{font:600 10px var(--display);letter-spacing:.25em;text-transform:uppercase;color:var(--champ);margin-bottom:14px}
+.section h2{font:600 clamp(2.6rem,5.5vw,6.2rem)/.92 var(--serif);letter-spacing:-.04em;margin:0;max-width:800px}
+.section-head p{max-width:370px;color:#a99f90;line-height:1.7;font-size:14px;margin:0}
+.rule{height:1px;background:var(--line);margin:20px 0}
+
+.statement{min-height:72vh;display:grid;grid-template-columns:1fr 1.15fr;gap:8vw;align-items:center}
+.statement-copy{position:relative}
+.statement-copy .big{font:600 clamp(3rem,6vw,7.4rem)/.84 var(--serif);letter-spacing:-.05em;margin:0}
+.statement-copy .big span{color:var(--champ)}
+.statement-note{margin-top:35px;padding-left:52px;border-left:1px solid var(--wine2);max-width:470px;color:#bcb1a1;line-height:1.75}
+.statement-visual{height:620px;position:relative}
+.statement-visual .photo-main{height:100%;box-shadow:var(--shadow)}
+.statement-visual .photo-main img{height:100%;filter:saturate(.8)}
+.floating-card{position:absolute;left:-55px;bottom:42px;width:260px;background:#171411;border:1px solid var(--line);padding:26px;box-shadow:var(--shadow)}
+.floating-card .num{font:500 46px var(--serif);color:var(--champ)}
+.floating-card small{display:block;margin-top:8px;color:#9d9384;font-size:10px;line-height:1.5;text-transform:uppercase;letter-spacing:.14em}
+
+.catalog{background:#0c0b09}
+.filterbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:36px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filter{border:1px solid var(--line);background:transparent;color:#aaa091;padding:10px 14px;font:600 10px var(--display);letter-spacing:.13em;text-transform:uppercase;transition:.25s}
+.filter.active,.filter:hover{border-color:var(--champ);color:var(--champ)}
+.search{border:1px solid var(--line);background:#12100e;color:var(--ivory);height:42px;padding:0 14px;min-width:240px;outline:none}
+.search:focus{border-color:var(--champ)}
+.books-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.book-card{grid-column:span 6;background:#14110f;border:1px solid var(--line);display:grid;grid-template-columns:42% 58%;min-height:420px;position:relative;overflow:hidden;transition:.4s}
+.book-card:nth-child(2){transform:translateY(55px)}
+.book-card:hover{border-color:rgba(214,182,123,.5);transform:translateY(-4px)}
+.book-card:nth-child(2):hover{transform:translateY(50px)}
+.cover-stage{position:relative;min-height:420px;background:#171310;display:grid;place-items:center;overflow:hidden}
+.cover-stage:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18);pointer-events:none}
+.cover{width:72%;aspect-ratio:.67;position:relative;box-shadow:22px 28px 35px rgba(0,0,0,.55);transform-style:preserve-3d;transition:.5s}
+.book-card:hover .cover{transform:perspective(900px) rotateY(-8deg) rotateX(2deg) translateY(-4px)}
+.cover:before{content:"";position:absolute;left:-8px;top:0;bottom:0;width:8px;background:#19130f;transform:skewY(-3deg);transform-origin:right}
+.cover.dark{background:#171717;border:1px solid #4a4037}
+.cover.wine{background:#55151c}
+.cover.espresso{background:#2b1b16}
+.cover .cover-top{position:absolute;top:18px;left:18px;right:18px;font:600 8px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--champ)}
+.cover .cover-title{position:absolute;left:18px;right:18px;top:30%;font:600 30px/.92 var(--serif);letter-spacing:-.03em;color:#f0e6d4}
+.cover .cover-sub{position:absolute;left:18px;right:18px;bottom:19%;font:500 8px/1.5 var(--display);letter-spacing:.13em;text-transform:uppercase;color:#bdb19d}
+.cover .cover-author{position:absolute;left:18px;right:18px;bottom:18px;font:700 9px var(--display);letter-spacing:.2em;text-transform:uppercase;color:#e8d8bb}
+.cover .stamp{position:absolute;right:14px;bottom:48px;width:42px;height:42px;border:1px solid rgba(214,182,123,.45);border-radius:50%;display:grid;place-items:center;font:600 7px var(--display);color:var(--champ);text-align:center}
+.book-info{padding:35px 34px 28px;display:flex;flex-direction:column}
+.series{font:600 9px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:13px}
+.book-info h3{font:600 clamp(1.7rem,3vw,3rem)/.95 var(--serif);letter-spacing:-.035em;margin:0 0 14px}
+.book-info .desc{color:#aaa092;font-size:13px;line-height:1.7;margin:0 0 24px}
+.book-meta{margin-top:auto;border-top:1px solid var(--line);padding-top:18px;display:flex;justify-content:space-between;gap:12px;align-items:end}
+.price{font:600 20px var(--serif);color:var(--paper)}
+.price small{font:500 8px var(--display);display:block;color:#887f73;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.book-actions{display:flex;gap:8px}
+.small-btn{height:38px;padding:0 12px;border:1px solid var(--line);background:transparent;color:#ddd2c1;font:700 9px var(--display);letter-spacing:.12em;text-transform:uppercase}
+.small-btn.primary{background:var(--champ);color:#17110b;border-color:var(--champ)}
+.small-btn:hover{border-color:var(--champ);color:var(--champ)}
+.small-btn.primary:hover{color:#17110b}
+
+.worlds{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+.world{min-height:580px;position:relative;overflow:hidden;border:1px solid var(--line);background:#17120f}
+.world img{height:100%;transition:1s;filter:saturate(.72)}
+.world:hover img{transform:scale(1.045)}
+.world:after{content:"";position:absolute;inset:0;background:rgba(5,4,3,.44)}
+.world-copy{position:absolute;z-index:2;left:34px;right:34px;bottom:32px}
+.world-copy .num{font:500 10px var(--display);letter-spacing:.25em;color:var(--champ)}
+.world-copy h3{font:600 clamp(2.5rem,5vw,5.5rem)/.86 var(--serif);letter-spacing:-.05em;margin:12px 0}
+.world-copy p{max-width:450px;color:#d1c6b4;line-height:1.65;font-size:13px}
+.world.small{min-height:280px}
+.world.small h3{font-size:clamp(2rem,3vw,3.4rem)}
+.world-stack{display:grid;gap:18px}
+
+.about{display:grid;grid-template-columns:.72fr 1.28fr;gap:9vw;align-items:center}
+.portrait-frame{position:relative;height:650px}
+.portrait-frame img{height:100%;filter:grayscale(.15) saturate(.75)}
+.portrait-frame:before{content:"";position:absolute;inset:18px -18px -18px 18px;border:1px solid rgba(214,182,123,.35);z-index:-1}
+.about-copy .display{font:600 clamp(2.8rem,5.5vw,6rem)/.9 var(--serif);letter-spacing:-.05em;margin:0 0 28px}
+.about-copy p{color:#b3a797;max-width:620px;line-height:1.8;font-size:15px}
+.signature{font:italic 28px var(--serif);color:var(--champ);margin-top:35px}
+
+.story-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.story-tile{background:#100e0c;min-height:280px;padding:32px;position:relative;overflow:hidden}
+.story-tile img{position:absolute;inset:0;height:100%;opacity:.28;transition:.6s}
+.story-tile:hover img{transform:scale(1.06);opacity:.42}
+.story-tile>*:not(img){position:relative;z-index:2}
+.story-tile .tag{font:600 9px var(--display);letter-spacing:.2em;color:var(--champ);text-transform:uppercase}
+.story-tile h3{font:600 34px/.95 var(--serif);margin:58px 0 10px}
+.story-tile p{color:#a99f90;font-size:12px;line-height:1.6;max-width:300px}
+
+.newsletter{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.newsletter h2{font:600 clamp(3rem,6vw,7rem)/.86 var(--serif);letter-spacing:-.05em;margin:0}
+.newsletter p{color:#a99f90;line-height:1.7;max-width:480px}
+.news-form{display:flex;border-bottom:1px solid var(--champ);margin-top:30px}
+.news-form input{flex:1;background:transparent;border:0;color:var(--ivory);height:54px;outline:none}
+.news-form button{background:transparent;border:0;color:var(--champ);font:700 10px var(--display);letter-spacing:.15em;text-transform:uppercase}
+
+.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:8vw}
+.contact-copy h2{font:600 clamp(3rem,6vw,6.8rem)/.88 var(--serif);letter-spacing:-.05em;margin:0}
+.contact-copy p{color:#a99f90;line-height:1.75;max-width:470px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font:600 9px var(--display);letter-spacing:.16em;text-transform:uppercase;color:#938879}
+.field input,.field textarea,.field select{border:1px solid var(--line);background:#11100e;color:var(--ivory);padding:14px;outline:none}
+.field textarea{min-height:150px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--champ)}
+.footer{padding:80px 7vw 30px;background:#070605;border-top:1px solid var(--line)}
+.footer-top{display:grid;grid-template-columns:1.2fr .8fr .8fr .8fr;gap:50px;padding-bottom:70px}
+.footer-brand{font:600 clamp(3rem,5vw,6rem)/.8 var(--serif);letter-spacing:-.06em}
+.footer p{color:#82786b;font-size:12px;line-height:1.7;max-width:360px}
+.footer h4{font:700 9px var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--champ);margin:0 0 18px}
+.footer a{display:block;color:#aaa092;font-size:12px;margin:10px 0}
+.footer a:hover{color:var(--ivory)}
+.footer-bottom{border-top:1px solid var(--line);padding-top:20px;display:flex;justify-content:space-between;color:#655e55;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+
+.modal,.drawer{position:fixed;inset:0;z-index:1600;visibility:hidden;opacity:0;transition:.3s}
+.modal.open,.drawer.open{visibility:visible;opacity:1}
+.modal-back,.drawer-back{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(10px)}
+.modal-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);width:min(900px,92vw);max-height:88vh;overflow:auto;background:#14110f;border:1px solid var(--line);box-shadow:var(--shadow);transition:.4s}
+.modal.open .modal-card{transform:translate(-50%,-50%)}
+.modal-close,.drawer-close{position:absolute;right:16px;top:16px;width:40px;height:40px;border:1px solid var(--line);background:#0e0c0a;color:var(--ivory);z-index:2}
+.modal-inner{display:grid;grid-template-columns:38% 62%}
+.modal-cover{padding:60px;background:#0d0b09;display:grid;place-items:center}
+.modal-cover .cover{width:76%}
+.modal-copy{padding:60px}
+.modal-copy h2{font:600 clamp(2.5rem,5vw,5rem)/.9 var(--serif);letter-spacing:-.05em;margin:8px 0 20px}
+.modal-copy p{color:#aaa092;line-height:1.75;font-size:14px}
+.drawer-panel{position:absolute;right:0;top:0;bottom:0;width:min(460px,92vw);background:#12100e;border-left:1px solid var(--line);padding:70px 30px 30px;transform:translateX(100%);transition:.4s}
+.drawer.open .drawer-panel{transform:translateX(0)}
+.drawer-panel h2{font:600 42px var(--serif);margin:0 0 28px}
+.cart-item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.cart-mini{width:64px;height:86px;background:#4b141a;display:grid;place-items:center;font:600 8px var(--display);text-align:center;color:var(--champ);padding:8px}
+.cart-item h4{font:600 16px var(--serif);margin:0 0 6px}
+.cart-item p{margin:0;color:#8e8579;font-size:10px}
+.cart-total{display:flex;justify-content:space-between;padding:25px 0;font:600 22px var(--serif)}
+.empty{color:#8e8579;line-height:1.7;padding:20px 0}
+.notice{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:1900;background:#e7d7b9;color:#17110b;padding:12px 18px;font:700 10px var(--display);letter-spacing:.08em;opacity:0;pointer-events:none;transition:.35s}
+.notice.show{opacity:1;transform:translate(-50%,0)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.parallax{will-change:transform}
+/* my css */
+.hero-content h1{
+  font-size:120px;
+}
+@media(max-width:1000px){
+  .navlinks{display:none}.menu-btn{display:grid}.nav{height:72px;padding:0 5vw}
+  .hero-content{padding:0 6vw 11vh}.hero-meta{display:none}
+  .statement,.about,.newsletter,.contact{grid-template-columns:1fr;gap:50px}
+  .statement-visual{height:520px}.floating-card{left:20px}
+  .books-grid{grid-template-columns:1fr}.book-card{grid-column:span 1}.book-card:nth-child(2){transform:none}.book-card:nth-child(2):hover{transform:translateY(-4px)}
+  .worlds{grid-template-columns:1fr}.world{min-height:480px}
+  .story-strip{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1.5fr 1fr 1fr}
+  .footer-top>div:last-child{display:none}
+}
+@media(max-width:650px){
+  .section{padding:90px 6vw}.hero h1{font-size:16vw}.hero-intro{font-size:14px}
+  .filterbar{align-items:stretch;flex-direction:column}.search{width:100%}
+  .book-card{grid-template-columns:1fr}.cover-stage{min-height:430px}.book-info{padding:28px}
+  .modal-inner{grid-template-columns:1fr}.modal-cover{padding:45px}.modal-copy{padding:35px}
+  .form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+  .footer-top{grid-template-columns:1fr 1fr}.footer-brand{font-size:48px}.footer-bottom{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="preloader" id="preloader"><div class="loader-mark"><div class="mono">Marcus Greer</div><div class="loader-line"></div><div class="mono" style="letter-spacing:.16em;color:#81776a">Entering the literary universe</div></div></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><span class="brand-mark"><span>MG</span></span><span>Marcus Greer</span></a>
+  <nav class="navlinks">
+    <a href="#books">Books</a><a href="#worlds">The Worlds</a><a href="#about">About</a><a href="#events">Events</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="nav-actions">
+    <button class="icon-btn cart-wrap" id="cartBtn" aria-label="Open cart">Bag <span class="cart-count" id="cartCount">0</span></button>
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-bg parallax" data-speed=".12"></div><div class="hero-grid"></div>
+  <div class="hero-content reveal">
+    <div class="kicker">Atlanta • Stories • Memory • Consequence</div>
+    <h1>Every street has a story.<br><em>Every story leaves a mark.</em></h1>
+    <p class="hero-intro">Enter the world of Marcus Greer — where Atlanta becomes more than a setting, memory becomes evidence, and every debt eventually comes due.</p>
+    <div class="cta-row"><a class="btn" href="#books">Enter the books <span>↗</span></a><a class="btn secondary" href="#about">Meet the storyteller</a></div>
+  </div>
+  <div class="hero-meta">A literary universe by Marcus Greer</div>
+  <div class="scroll-cue">Scroll to enter</div>
+</section>
+
+<section class="section dark2">
+  <div class="statement">
+    <div class="statement-copy reveal">
+      <div class="eyebrow">The central idea</div>
+      <p class="big">The city remembers what people <span>try to forget.</span></p>
+      <div class="statement-note">Marcus Greer's public catalog is rooted in Atlanta, loyalty, family, buried history, and the consequences that follow people home. The site treats each story like a piece of a larger cinematic archive.</div>
+    </div>
+    <div class="statement-visual reveal">
+      <img class="photo-main parallax" data-speed=".08" src="https://images.unsplash.com/photo-1656301425545-9c220b197781?auto=format&fit=crop&fm=jpg&q=84&w=2200" alt="Atlanta street at night">
+      <div class="floating-card"><div class="num">01</div><small>Atlanta is not background.<br>It is a character.</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="section catalog" id="books">
+  <div class="section-head reveal">
+    <div><div class="eyebrow">The library</div><h2>Stories with a pulse.</h2></div>
+    <p>Verified public listings currently identify four Marcus Greer titles: the three-book <em>The People We Owe</em> series and <em>What the Block Buried</em>. Pricing below preserves the listed currency/source rather than inventing a conversion.</p>
+  </div>
+  <div class="filterbar">
+    <div class="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="series">The People We Owe</button>
+      <button class="filter" data-filter="urban">Urban drama</button>
+    </div>
+    <input class="search" id="bookSearch" placeholder="Search the library…" aria-label="Search books">
+  </div>
+  <div class="books-grid" id="booksGrid">
+    <article class="book-card reveal" data-cat="series" data-title="Every Debt Comes Due">
+      <img src="https://m.media-amazon.com/images/I/81kB8BwnZ-L._AC_CR0%2C0%2C0%2C0_SY315_.jpg" alt="">
+      <!-- <div class="cover-stage"><div class="cover dark tilt"><div class="cover-top">THE PEOPLE WE OWE · BOOK ONE</div><div class="cover-title">Every<br>Debt<br>Comes Due</div><div class="cover-sub">A gritty Atlanta mystery of loyalty, memory & family</div><div class="cover-author">Marcus Greer</div><div class="stamp">ATL<br>GA</div></div></div> -->
+      <div class="book-info"><div class="series">The People We Owe · Book 1</div><h3>Streets Stories 2</h3><p class="desc">The streets never really changed. They just got better at hiding what was happening.
+
+Marcus is determined to leave his old life behind, protect his family, and move forward. But when mysterious calls, threats, and secrets from the past begin surfacing, he realizes walking away from the streets doesn’t mean the streets have forgotten him.</p><div class="book-meta"><div class="price">$9.20 <small>eBook · listed price</small></div><div class="book-actions"><button class="small-btn" data-detail="debt">Details</button><button class="small-btn primary" data-add="debt">Add</button></div></div></div>
+    </article>
+
+    <article class="book-card reveal" data-cat="series" data-title="What the Southside Knows">
+      <!-- <div class="cover-stage"><div class="cover wine tilt"><div class="cover-top">THE PEOPLE WE OWE · BOOK TWO</div><div class="cover-title">What the<br>Southside<br>Knows</div><div class="cover-sub">Some secrets never stay buried.</div><div class="cover-author">Marcus Greer</div><div class="stamp">SOUTH<br>SIDE</div></div></div> -->
+       <img src="https://m.media-amazon.com/images/I/81LYRouEC-L._AC_CR0%2C0%2C0%2C0_SY315_.jpg" alt="">
+      <div class="book-info"><div class="series">Streets With Stories</div><h3>No Way Back</h3><p class="desc">The truth was supposed to set them free. Instead, it opened the door to a war buried inside the Greer family for years.
+
+When Nia discovers that her father Marcus has been hiding secrets about his past, one revelation leads to another—an uncle believed dead, a powerful criminal network, hidden property, missing family members, and a legacy built around her name.</p><div class="book-meta"><div class="price">¥1,046 <small>eBook · listed price</small></div><div class="book-actions"><button class="small-btn" data-detail="southside">Details</button><button class="small-btn primary" data-add="southside">Add</button></div></div></div>
+    </article>
+
+    <article class="book-card reveal" data-cat="series" data-title="The Boy We Left Behind">
+      <!-- <div class="cover-stage"><div class="cover espresso tilt"><div class="cover-top">THE PEOPLE WE OWE · BOOK THREE</div><div class="cover-title">The Boy<br>We Left<br>Behind</div><div class="cover-sub">Some debts are measured by who stayed.</div><div class="cover-author">Marcus Greer</div><div class="stamp">EAST<br>SIDE</div></div></div> -->
+       <img src="https://m.media-amazon.com/images/I/81Rt9hqjGuL._AC_CR0%2C0%2C0%2C0_SY315_.jpg" alt="">
+      <div class="book-info"><div class="series">TStreet with stories</div><h3>Street with stories</h3><p class="desc">is still young enough to believe anything is possible, even as growing up on the block teaches him how quickly life can change.
+
+As their paths cross, they discover that strength isn't always loud, success doesn't always look the way you expect, and sometimes the most important choice is simply refusing to give up.</p><div class="book-meta"><div class="price">¥1,046 <small>eBook · listed price</small></div><div class="book-actions"><button class="small-btn" data-detail="boy">Details</button><button class="small-btn primary" data-add="boy">Add</button></div></div></div>
+    </article>
+
+    <article class="book-card reveal" data-cat="urban" data-title="What the Block Buried">
+      <!-- <div class="cover-stage"><div class="cover wine tilt"><div class="cover-top">MARCUS GREER</div><div class="cover-title">What the<br>Block<br>Buried</div><div class="cover-sub">Loyalty. Money. Betrayal. Survival.</div><div class="cover-author">Greer Creative Group</div><div class="stamp">THE<br>BLOCK</div></div></div> -->
+       <img src="https://m.media-amazon.com/images/I/81VcudMovIL._AC_CR0%2C0%2C0%2C0_SY315_.jpg" alt="">
+      <div class="book-info"><div class="series">Streets With Stories</div><h3>No Way Back</h3><p class="desc">In the streets, the truth always comes with a price.
+
+After everything that has been uncovered, there is no returning to the life they knew. Old secrets are surfacing, loyalties are being tested, and every new answer brings an even more dangerous question.</p><div class="book-meta"><div class="price">$13.29 <small>Paperback · listed edition</small></div><div class="book-actions"><button class="small-btn" data-detail="block">Details</button><button class="small-btn primary" data-add="block">Add</button></div></div></div>
+    </article>
+  </div>
+</section>
+
+<section class="section wine" id="worlds">
+  <div class="section-head reveal">
+    <div><div class="eyebrow">The worlds</div><h2>Where place becomes character.</h2></div>
+    <p>Designed as a visual atlas rather than a generic genre grid — Atlanta nights, Southern memory, family history, and the objects that carry a story.</p>
+  </div>
+  <div class="worlds">
+    <article class="world reveal"><img src="https://images.unsplash.com/photo-1696892590514-45130ca048fd?auto=format&fit=crop&fm=jpg&q=84&w=2200" alt="Atlanta skyline at sunset"><div class="world-copy"><div class="num">01 — ATLANTA</div><h3>The City Keeps Receipts.</h3><p>Highways, neighborhoods, bridges, and streets become the connective tissue of the stories — places where old choices keep resurfacing.</p></div></article>
+    <div class="world-stack">
+      <article class="world small reveal"><img src="https://images.unsplash.com/photo-1633966077296-1e8991d9326b?auto=format&fit=crop&fm=jpg&q=84&w=1800" alt="Southern farmhouse porch"><div class="world-copy"><div class="num">02 — SOUTHERN MEMORY</div><h3>Home Has A Long Memory.</h3><p>Porches, family rooms, roads, and inherited silences turn ordinary spaces into emotional archives.</p></div></article>
+      <article class="world small reveal"><img src="https://images.unsplash.com/photo-1756982784227-e0e9e509f483?auto=format&fit=crop&fm=jpg&q=84&w=1800" alt="Family together on a porch"><div class="world-copy"><div class="num">03 — FAMILY</div><h3>What We Owe Each Other.</h3><p>Blood, chosen family, loyalty, betrayal, and the stories people inherit without asking for them.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section dark2" id="about">
+  <div class="about">
+    <div class="portrait-frame reveal"><img src="c:\Users\Humayon\Downloads\284fa186-d7ea-4b4d-bc42-817da6dc85c4.png" alt="Writer's desk with ledger and writing implements"></div>
+    <div class="about-copy reveal">
+      <div class="eyebrow">The storyteller</div>
+      <p class="display">Marcus Greer writes where memory, place, and consequence meet.</p>
+      <p>This presentation intentionally keeps the biography factual and restrained. Rather than invent credentials, awards, or a manufactured origin story, it lets the published work establish the voice: Atlanta-centered mysteries, urban drama, loyalty, family, buried history, and the pressure of the past.</p>
+      <p>As the catalog expands, this section is designed to become Marcus's definitive author portrait — a place for his own words, verified biography, media, and appearances.</p>
+      <div class="signature">Marcus Greer</div>
+    </div>
+  </div>
+</section>
+
+<section class="story-strip" id="events">
+  <article class="story-tile reveal"><img src="https://images.unsplash.com/photo-1775129667575-0047abd246d3?auto=format&fit=crop&fm=jpg&q=82&w=1500" alt="Letters and writing desk"><div class="tag">The archive</div><h3>Letters leave traces.</h3><p>Objects become evidence. A photograph, an envelope, an old note — sometimes the smallest artifact changes the whole story.</p></article>
+  <article class="story-tile reveal"><img src="https://images.unsplash.com/photo-1780246031989-88eea0166715?auto=format&fit=crop&fm=jpg&q=82&w=1500" alt="Open book and study desk"><div class="tag">The craft</div><h3>Write it down.</h3><p>A cinematic visual language for manuscripts, late nights, research, and the quiet architecture behind a finished book.</p></article>
+  <article class="story-tile reveal"><img src="https://images.unsplash.com/photo-1644224711310-09284abef3df?auto=format&fit=crop&fm=jpg&q=82&w=1500" alt="Children playing in a park"><div class="tag">Beyond the block</div><h3>Stories can travel.</h3><p>A flexible visual system is ready for future collections, including family and younger-reader adventures once official titles are supplied.</p></article>
+</section>
+
+<section class="section dark2">
+  <div class="newsletter">
+    <div class="reveal"><div class="eyebrow">The reader's room</div><h2>Get the next story before it hits the street.</h2></div>
+    <div class="reveal"><p>Join the private reader list for new-book announcements, signed-copy drops, events, behind-the-scenes notes, and occasional dispatches from the world of Marcus Greer.</p><form class="news-form" id="newsForm"><input type="email" placeholder="Your email address" required><button type="submit">Join the list ↗</button></form></div>
+  </div>
+</section>
+
+<section class="section wine" id="contact">
+  <div class="contact">
+    <div class="contact-copy reveal"><div class="eyebrow">Contact / bookings</div><h2>Let's talk about the story.</h2><p>For speaking, bookstore events, media inquiries, collaborations, signed editions, or general messages, use the form. This front-end demo is ready to connect to your preferred form service.</p></div>
+    <form class="form-grid reveal" id="contactForm">
+      <div class="field"><label>Name</label><input required placeholder="Your name"></div>
+      <div class="field"><label>Email</label><input required type="email" placeholder="you@example.com"></div>
+      <div class="field"><label>Inquiry</label><select><option>General message</option><option>Bookstore / event</option><option>Media</option><option>Speaking</option><option>Collaboration</option></select></div>
+      <div class="field"><label>Organization</label><input placeholder="Optional"></div>
+      <div class="field full"><label>Message</label><textarea required placeholder="Tell Marcus what you have in mind…"></textarea></div>
+      <div class="field full"><button class="btn" type="submit">Send inquiry <span>↗</span></button></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div><div class="footer-brand">Marcus<br>Greer.</div><p>Author. Storyteller. A literary universe built from streets, memory, family, loyalty, and consequence.</p></div>
+    <div><h4>Explore</h4><a href="#books">Books</a><a href="#worlds">The Worlds</a><a href="#about">About Marcus</a><a href="#events">Reader Room</a></div>
+    <div><h4>Connect</h4><a href="#contact">Contact</a><a href="#contact">Events</a><a href="#contact">Media</a><a href="#top">Back to top ↑</a></div>
+    <div><h4>Catalog note</h4><p>Publicly listed catalog data was checked September 17, 2026. Prices and currencies are shown as listed by the sources used for verification; no unverified titles, awards, reviews, or biography claims are added.</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Marcus Greer</span><span>Designed as a cinematic literary experience</span></div>
+</footer>
+
+<div class="modal" id="modal"><div class="modal-back" data-close></div><div class="modal-card"><button class="modal-close" data-close>×</button><div class="modal-inner"><div class="modal-cover" id="modalCover"></div><div class="modal-copy"><div class="eyebrow" id="modalSeries"></div><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="rule"></div><div class="book-meta"><div class="price" id="modalPrice"></div><button class="btn" id="modalAdd">Add to cart ↗</button></div></div></div></div></div>
+
+<div class="drawer" id="drawer"><div class="drawer-back" data-close-cart></div><aside class="drawer-panel"><button class="drawer-close" data-close-cart>×</button><div class="eyebrow">Private bookstore</div><h2>Your bag.</h2><div id="cartItems"></div><div class="cart-total"><span>Total</span><span id="cartTotal">$0.00</span></div><button class="btn" style="width:100%" id="checkout">Proceed to checkout ↗</button></aside></div>
+<div class="notice" id="notice">Added to your bag.</div>
+
+<script>
+const books={
+ debt:{title:"Every Debt Comes Due",series:"The People We Owe · Book 1",price:9.20,currency:"$",label:"eBook · listed price",desc:"Atlanta raised them. The trenches bonded them. Time separated them. When Ms. Phylliss is found dead, eight childhood friends are pulled back together by mysterious envelopes and secrets buried for decades.",cover:"dark"},
+ southside:{title:"What the Southside Knows",series:"The People We Owe · Book 2",price:1046,currency:"¥",label:"eBook · listed price",desc:"Tameka learns an anonymous photograph may prove her father survived. The search pulls her and Marc, Polo, and C-Baby deep into Atlanta's Southside — where every stop reveals another secret and another debt.",cover:"wine"},
+ boy:{title:"The Boy We Left Behind",series:"The People We Owe · Book 3",price:1046,currency:"¥",label:"eBook · listed price",desc:"An old photograph brings Marc face-to-face with Derrick Bell — the boy who once saved him and the boy Marc left behind with the police. A trail through East Atlanta forces the past back into the present.",cover:"espresso"},
+ block:{title:"What the Block Buried",series:"Urban Drama · Paperback",price:13.29,currency:"$",label:"Paperback · listed edition",desc:"In Atlanta, the block sees everything — but never tells the whole story. Loyalty, money, betrayal, and survival collide as buried secrets rise to the surface and the truth becomes dangerous.",cover:"wine"}
+};
+let cart=[];
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+window.addEventListener("load",()=>setTimeout(()=>$("#preloader").classList.add("hide"),650));
+window.addEventListener("scroll",()=>{
+  $("#nav").classList.toggle("scrolled",scrollY>30);
+  $$(".parallax").forEach(el=>{const r=el.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight){el.style.transform=`translateY(${(r.top-innerHeight/2)*-0.04*Number(el.dataset.speed||.1)*20}px)`}});
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
+$$(".reveal").forEach(e=>io.observe(e));
+
+$$(".filter").forEach(btn=>btn.addEventListener("click",()=>{
+  $$(".filter").forEach(x=>x.classList.remove("active"));btn.classList.add("active");
+  const f=btn.dataset.filter;
+  $$(".book-card").forEach(c=>c.style.display=(f==="all"||c.dataset.cat===f)?"grid":"none");
+}));
+$("#bookSearch").addEventListener("input",e=>{
+  const q=e.target.value.toLowerCase();
+  $$(".book-card").forEach(c=>c.style.display=c.dataset.title.toLowerCase().includes(q)?"grid":"none");
+});
+function coverHTML(b){
+  return `<div class="cover ${b.cover}"><div class="cover-top">${b.series}</div><div class="cover-title">${b.title.replaceAll(" ","<br>")}</div><div class="cover-sub">Marcus Greer</div><div class="cover-author">Marcus Greer</div></div>`;
+}
+function openDetail(id){
+  const b=books[id]; $("#modalCover").innerHTML=coverHTML(b);$("#modalSeries").textContent=b.series;$("#modalTitle").textContent=b.title;$("#modalDesc").textContent=b.desc;$("#modalPrice").innerHTML=`${b.currency}${b.price.toLocaleString()} <small>${b.label}</small>`;$("#modalAdd").onclick=()=>add(id);$("#modal").classList.add("open");document.body.style.overflow="hidden";
+}
+$$("[data-detail]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.detail)));
+$$("[data-close]").forEach(b=>b.addEventListener("click",()=>{$("#modal").classList.remove("open");document.body.style.overflow=""}));
+function add(id){
+  const b=books[id]; const found=cart.find(x=>x.id===id); if(found)found.qty++; else cart.push({id,qty:1});
+  renderCart(); showNotice(`${b.title} added to your bag.`);
+}
+$$("[data-add]").forEach(b=>b.addEventListener("click",()=>add(b.dataset.add)));
+function renderCart(){
+  $("#cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0);
+  $("#cartItems").innerHTML=cart.length?cart.map(x=>{const b=books[x.id];return `<div class="cart-item"><div class="cart-mini">${b.title}</div><div><h4>${b.title}</h4><p>${b.series} · Qty ${x.qty}</p></div><div>${b.currency}${(b.price*x.qty).toLocaleString()}</div></div>`}).join(""):`<div class="empty">Your bag is empty. Start with a story.</div>`;
+  const usd=cart.reduce((a,x)=>a+(books[x.id].currency==="$"?books[x.id].price*x.qty:0),0);
+  const foreign=cart.some(x=>books[x.id].currency!=="$");
+  $("#cartTotal").textContent=foreign?`$${usd.toFixed(2)} + foreign-currency items`:`$${usd.toFixed(2)}`;
+}
+$("#cartBtn").addEventListener("click",()=>{$("#drawer").classList.add("open");renderCart()});
+$$("[data-close-cart]").forEach(b=>b.addEventListener("click",()=>$("#drawer").classList.remove("open")));
+$("#checkout").addEventListener("click",()=>showNotice("Checkout is ready to connect to your payment provider."));
+function showNotice(t){$("#notice").textContent=t;$("#notice").classList.add("show");setTimeout(()=>$("#notice").classList.remove("show"),2600)}
+$("#newsForm").addEventListener("submit",e=>{e.preventDefault();e.target.reset();showNotice("You're on the reader list.")});
+$("#contactForm").addEventListener("submit",e=>{e.preventDefault();e.target.reset();showNotice("Your inquiry is staged for delivery.")});
+$("#menuBtn").addEventListener("click",()=>{
+  const nav=$("#nav"); const open=nav.dataset.menu==="1"; nav.dataset.menu=open?"0":"1";
+  if(!open){$(".navlinks").style.cssText="display:flex;position:absolute;left:0;right:0;top:72px;background:#0b0a08;padding:24px 6vw;flex-direction:column;gap:20px;border-bottom:1px solid rgba(238,229,211,.15)"}else $(".navlinks").style.cssText="";
+});
+$$(".tilt").forEach(el=>el.addEventListener("mousemove",e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(900px) rotateY(${x*12}deg) rotateX(${y*-8}deg) translateY(-4px)`}));
+$$(".tilt").forEach(el=>el.addEventListener("mouseleave",()=>el.style.transform=""));
+renderCart();
+</script>
+</body>
+</html>
